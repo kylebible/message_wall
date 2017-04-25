@@ -13,7 +13,10 @@ def index(request):
         return redirect('/wall')
 
 def wall(request):
-    pass
+    context = {
+    'user': User.objects.get(id=request.session['current_user_id'])
+    }
+    return render(request, 'messages/wall.html', context)
 
 def login_page(request):
     return render(request, 'messages/login.html')
@@ -66,13 +69,10 @@ def logout(request):
     request.session.clear()
     return redirect ('/login')
 
-
-
-def add_user(request):
-    pass
-
 def add_friend(request):
     pass
 
 def add_message(request):
-    pass
+    if (request.POST['comment']):
+        Message.objects.create(content=request.POST['comment'], user=User.objects.get(id=request.session['current_user_id']))
+    return redirect('/wall')
