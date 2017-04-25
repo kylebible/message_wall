@@ -91,7 +91,7 @@
                   <div class="modal-body">
                       <center>
                       <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
-                      <h3 class="media-heading">Joe Sixpack <small>USA</small></h3>
+                      <h3 class="media-heading">{{users.first_name}}&nbsp;{{users.last_name}}&nbsp;{{users.email}}<small>USA</small></h3>
                       <span><strong>Skills: </strong></span>
                           <span class="label label-warning">HTML5/CSS</span>
                           <span class="label label-info">Adobe CS 5.5</span>
@@ -100,8 +100,24 @@
                       </center>
                       <hr>
                       <center>
-                      <p class="text-left"><strong>Bio: </strong><br>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
+                      <p class="text-left"><strong>My Friends:</strong><br>
+                        <ul>
+                          {% for friend in users.friends.all %}
+                            <li><a href="/user/{{friend.id}}">{{friend.first_name}}&nbsp;{{friend.last_name}}</a></li>
+                          {% endfor %}
+                          </ul>
+                          </p>
+                      <br>
+                      </center>
+                      <center>
+                      <p class="text-left"><strong>My Favorite Messages: </strong><br>
+                        <h4>Number of Favorite Messages: message.favorite.count</h4>
+                          <ul>
+                            {% message in messages.favorite.all %}
+                            <li><a href="/user{{message.user.id}}">{{message.user.first_name}}&nbsp;{{message.user.first_name}}</a>:{{message.content}}</li>
+                            {% endfor %}
+                          </ul>
+                          </p>
                       <br>
                       </center>
                   </div>
