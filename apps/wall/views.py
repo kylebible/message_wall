@@ -15,7 +15,7 @@ def index(request):
 def wall(request):
     context = {
     'user': User.objects.get(id=request.session['current_user_id']),
-    'comments': Message.objects.all().order_by("-created_at")
+    'comments': Message.objects.all().order_by("-created_at"),
     }
     return render(request, 'messages/wall.html', context)
 
@@ -70,22 +70,23 @@ def logout(request):
     request.session.clear()
     return redirect ('/login')
 
-def user_page(request, id):
-    if request.session["id"] == str(id):
-        user=User.objects.get(id=request.session["current_user_id"])
-        message=Message.objects.filter(user=user)
-        context={
-            "users": user,
-            "messages":message
-        }
-    else:
-        user=User.objects.get(id=id)
-        message=Message.objects.filter(user=user)
-        context={
-            "users": user,
-            "messages":message
-        }
+def current_user_page(request):
+    user=User.objects.get(id=request.session["current_user_id"])
+    message=Message.objects.filter(user=user)
+    context={
+        "users": user,
+        "messages":message
+    }
     return render(request, "messages/user.html", context)
+
+def user_page(request, id):
+    user=User.objects.get(id=id)
+    message=Message.objects.filter(user=user)
+    context={
+        "users": user,
+        "messages":message
+    }
+    return render(request, 'messages/user.html', context)
 
 def add_friend(request):
     pass
@@ -97,6 +98,12 @@ def add_message(request):
 
 def add_like(request, id):
     message=Message.objects.get(id=id)
-    user=User.objects.get(id=request.sesion['current_user_id'])
+    user=User.objects.get(id=request.session['current_user_id'])
     message.likes.add(user)
+    return redirect('/wall')
+
+def add_favorites(request, id):
+    message=Message.objects.get(id=id)
+    user=User.objects.get(id=request.session['current_user_id'])
+    message.favorite.add(user)
     return redirect('/wall')

@@ -10,8 +10,9 @@ urlpatterns = [
     url(r'^wall$', views.wall),
     url(r'^logout$', views.logout),
     url(r'^add_message$', views.add_message),
-    url(r'^user$', views.user_page),
-    url(r'^like_message/(?P<id>\d+)$', views.add_like)
+    url(r'^user$', views.current_user_page),
+    url(r'^like_message/(?P<id>\d+)$', views.add_like),
     url(r'^user/(?P<id>\d+)$', views.user_page),
-    url(r'^logout$', views.logout)
+    url(r'^logout$', views.logout),
+    url(r'^favorite_message/(?P<id>\d+)$', views.add_favorites)
 ]

@@ -67,7 +67,7 @@ nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #f
 						<li><a href="#"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Game</span> sayfasında iletiniz beğenildi</a></li>
 					</ul>
 				</li>
-				<li class="active"><a href="/user">{{user.first_name}}&nbsp;{{user.last_name}} <span class="sr-only">(current)</span></a></li>
+				<li class="active"><a href="/user/{{user.id}}">{{user.first_name}}&nbsp;{{user.last_name}} <span class="sr-only">(current)</span></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -104,10 +104,11 @@ nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #f
                                   <img src="http://www.uidownload.com/files/553/986/399/avatar-face-icon.png">
                                 </a>
                                 <div class="media-body">
-                                  <h4 class="media-heading user_name">{{i.user.first_name}}</h4>
                                   {{i.content}}
+                                  <h4 class="media-heading user_name">{{i.user.first_name}}</h4>
+                                  <p class="pull-right"><small>{{i.likes.count}} Likes {{i.favorite.count}}</small></p>
                                   {% if i.user.id != request.session.current_user_id %}
-                                  <p><small><a href="/like_message/{{i.id}}">Like</a> - <a href="/favorite_message">Favorite</a></small></p>
+                                  <p><small><a href="/like_message/{{i.id}}">Like</a> - <a href="/favorite_message/{{i.id}}">Favorite</a></small></p>
                                   {%endif%}
                                 </div>
                               </div>
