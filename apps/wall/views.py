@@ -17,7 +17,6 @@ def login(request):
 def add_user(request):
     pass
 
-
 def add_friend(request):
     pass
 
