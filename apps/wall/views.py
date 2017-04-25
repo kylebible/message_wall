@@ -13,3 +13,6 @@ def index(request):
 
 def login(request):
     return render(request, 'messages/login.html')
+
+def add_user(request):
+    pass
