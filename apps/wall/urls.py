@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^register$', views.register),
     url(r'^wall$', views.wall),
     url(r'^logout$', views.logout),
-    url(r'^add_message$', views.add_message)
+    url(r'^add_message$', views.add_message),
+    url(r'^user$', views.user_page),
+    url(r'^logout$', views.logout)
 ]

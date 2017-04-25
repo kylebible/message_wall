@@ -69,6 +69,20 @@ def logout(request):
     request.session.clear()
     return redirect ('/login')
 
+def user_page(request):
+    user=User.objects.get(id=request.session["current_user_id"])
+    message=Message.objects.filter(user=user)
+    context={
+        "users": user,
+        "messages":message
+    }
+    return render(request, "messages/user.html", context)
+
+
+
+def add_user(request):
+    pass
+
 def add_friend(request):
     pass
 
