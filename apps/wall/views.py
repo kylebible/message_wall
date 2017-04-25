@@ -23,3 +23,6 @@ def add_friend(request):
 
 def add_message(request):
     pass
+
+def add(request):
+    pass
