@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^logout$', views.logout),
     url(r'^add_message$', views.add_message),
     url(r'^user$', views.user_page),
-    url(r'^logout$', views.logout)
+    url(r'^logout$', views.logout),
+    url(r'^like_message/(?P<id>\d+)$', views.add_like)
 ]

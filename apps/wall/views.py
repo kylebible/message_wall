@@ -14,7 +14,8 @@ def index(request):
 
 def wall(request):
     context = {
-    'user': User.objects.get(id=request.session['current_user_id'])
+    'user': User.objects.get(id=request.session['current_user_id']),
+    'comments': Message.objects.all().order_by("-created_at")
     }
     return render(request, 'messages/wall.html', context)
 
@@ -78,15 +79,16 @@ def user_page(request):
     }
     return render(request, "messages/user.html", context)
 
-
-
-def add_user(request):
-    pass
-
 def add_friend(request):
     pass
 
 def add_message(request):
     if (request.POST['comment']):
         Message.objects.create(content=request.POST['comment'], user=User.objects.get(id=request.session['current_user_id']))
+    return redirect('/wall')
+
+def add_like(request, id):
+    message=Message.objects.get(id=id)
+    user=User.objects.get(id=request.sesion['current_user_id'])
+    message.likes.add(user)
     return redirect('/wall')

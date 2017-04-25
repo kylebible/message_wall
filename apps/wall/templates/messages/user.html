@@ -104,7 +104,7 @@
                       <p class="text-left"><strong>My Favorite Messages: </strong><br>
                         <h4>Number of Favorite Messages: message.favorite.count</h4>
                           <ul>
-                            {% message in messages.favorite.all %}
+                            {% for message in messages.favorite.all %}
                             <li><a href="/user{{message.user.id}}">{{message.user.first_name}}&nbsp;{{message.user.first_name}}</a>:{{message.content}}</li>
                             {% endfor %}
                           </ul>
@@ -117,6 +117,20 @@
                       <br>
                       </center>
                   </div>
+                  {% for i in messages %}
+                    <div class="media">
+                        <p class="pull-right"><small>{{i.created_at}}</small></p>
+                         <a class="media-left" href="/user/{{i.user.id}}">
+                           <img style="height: 75px; width: auto;" src="http://www.uidownload.com/files/553/986/399/avatar-face-icon.png">
+                         </a>
+                         <div class="media-body">
+                           <h4 class="media-heading user_name">{{i.user.first_name}}</h4>
+                           {{i.content}}
+
+                           <p><small><a href="/like_message">Like</a> - <a href="/favorite_message">Favorite</a></small></p>
+                         </div>
+                       </div>
+                       {% endfor %}
                   <center>
                   <button type="button" action='/addfriend'class="btn btn-default" data-dismiss="modal" style='margin-bottom: 10px;'>Add Joe as a friend!</button>
                   </center>
