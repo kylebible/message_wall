@@ -117,7 +117,7 @@
                            <h4 class="media-heading user_name">{{i.user.first_name}}</h4>
                            {{i.content}}
 
-                           <p><small><a href="/like_message">Like</a> - <a href="/favorite_message">Favorite</a></small></p>
+                           <p><small><a href="/like_message/{{i.id}}">Like</a> - <a href="/favorite_message/{{i.id}}">Favorite</a></small></p>
                          </div>
                        </div>
                        {% endfor %}

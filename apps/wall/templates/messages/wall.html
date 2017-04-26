@@ -104,8 +104,8 @@ nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #f
                                   <img src="http://www.uidownload.com/files/553/986/399/avatar-face-icon.png">
                                 </a>
                                 <div class="media-body">
-                                  {{i.content}}
                                   <h4 class="media-heading user_name">{{i.user.first_name}}</h4>
+                                  {{i.content}}
                                   <p class="pull-right"><small>{{i.likes.count}} Likes {{i.favorite.count}}</small></p>
                                   {% if i.user.id != request.session.current_user_id %}
                                   <p><small><a href="/like_message/{{i.id}}">Like</a> - <a href="/favorite_message/{{i.id}}">Favorite</a></small></p>
