@@ -33,7 +33,7 @@ def login(request):
     if check:
         for i in range (0, len(check)):
             messages.add_message(request, messages.INFO, check[i])
-        return redirect ('/login')
+        return redirect ('/loginpage')
     user1=User.objects.filter(email=email, password=password)
     request.session["current_user_id"]=user1[0].id
     print "hi"
@@ -68,7 +68,7 @@ def register(request):
 
 def logout(request):
     request.session.clear()
-    return redirect ('/login')
+    return redirect ('/loginpage')
 
 def current_user_page(request):
     user=User.objects.get(id=request.session["current_user_id"])
